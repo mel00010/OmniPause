@@ -2,7 +2,12 @@
 
 OmniPause is a python program to control media players via DBus.
 
+## Description
+Have you ever wished you could control the playback of all your running media players with a single command or hotkey?
+Until now, there was no real good way to do this.  If you wanted a universal pause/play hotkey, you were pretty much out of luck.  Now, with OmniPause, you can use a single, universal command to control all of your media players.  
+
 ## Dependencies
+ * python2
  * dbus-python
 
 ## Setup
