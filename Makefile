@@ -1,2 +1,2 @@
 install:
-	install omniPause.py /usr/local/bin/omnipause
+	install OmniPause.py /usr/local/bin/omnipause
