@@ -28,12 +28,19 @@ bus       = dbus.SessionBus()
 def do_nothing(*args, **kwargs):
     pass
 
+def get_player_name(i, player):
+	if i.startswith("org.mpris.MediaPlayer2."):
+		return i[len("org.mpris.MediaPlayer2."):]
+	else:
+		return player.Get('org.mpris.MediaPlayer2','DesktopEntry', dbus_interface='org.freedesktop.DBus.Properties')
+
+
 def pause():
 	for i in players:
 		player = bus.get_object(i, '/org/mpris/MediaPlayer2')
 		player_status = player.Get('org.mpris.MediaPlayer2.Player','PlaybackStatus', dbus_interface='org.freedesktop.DBus.Properties')
 		if player_status == 'Playing':
-			player_name = player.Get('org.mpris.MediaPlayer2','DesktopEntry', dbus_interface='org.freedesktop.DBus.Properties')
+			player_name = get_player_name(i, player)
 			player_status_file = open(directory+'/paused-players/'+player_name, "w")
 			player_status_file.close()
 			player.Pause(dbus_interface='org.mpris.MediaPlayer2.Player', reply_handler=do_nothing, error_handler=do_nothing)
@@ -62,7 +69,6 @@ def toggle():
 	playing = False
 	for i in players:
 		player = bus.get_object(i, '/org/mpris/MediaPlayer2')
-		player_name = player.Get('org.mpris.MediaPlayer2','DesktopEntry', dbus_interface='org.freedesktop.DBus.Properties')
 		player_status = player.Get('org.mpris.MediaPlayer2.Player','PlaybackStatus', dbus_interface='org.freedesktop.DBus.Properties')
 		if player_status == 'Playing':
 			playing = True
