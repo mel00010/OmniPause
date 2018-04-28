@@ -36,14 +36,21 @@ def get_player_name(i, player):
 
 
 def pause():
+	player_names = []
 	for i in players:
 		player = bus.get_object(i, '/org/mpris/MediaPlayer2')
 		player_status = player.Get('org.mpris.MediaPlayer2.Player','PlaybackStatus', dbus_interface='org.freedesktop.DBus.Properties')
 		if player_status == 'Playing':
 			player_name = get_player_name(i, player)
+			player_names.append(player_name)
+			player.Pause(dbus_interface='org.mpris.MediaPlayer2.Player', reply_handler=do_nothing, error_handler=do_nothing)
+
+	if player_names != []:
+		for i in os.listdir(directory+'/paused-players/'):
+			os.remove(directory+'/paused-players/'+i)
+		for player_name in player_names:
 			player_status_file = open(directory+'/paused-players/'+player_name, "w")
 			player_status_file.close()
-			player.Pause(dbus_interface='org.mpris.MediaPlayer2.Player', reply_handler=do_nothing, error_handler=do_nothing)
 
 def play():
 	for i in os.listdir(directory+'/paused-players/'):
