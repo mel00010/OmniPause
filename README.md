@@ -8,7 +8,7 @@ Have you ever wished you could control the playback of all your running media pl
 Until now, there was no real good way to do this without spending all of your free time scripting playerctl.  Now, with OmniPause, you can use a single, universal command to control all of your media players, with absolutely zero scripting required!  
 
 ## Dependencies
- * python2
+ * python3
  * dbus-python
 
 ## Setup
