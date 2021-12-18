@@ -124,6 +124,6 @@ if len(sys.argv)-1 == 1:
 	elif sys.argv[1] == 'toggle':
 		toggle()
 	else:
-		print >> sys.stderr, "Error:  Valid commands to "+sys.argv[0]+"are: pause, play, stop, next, previous, or toggle"
+		print("Error:  Valid commands to "+sys.argv[0]+"are: pause, play, stop, next, previous, or toggle")
 else:
-	print >> sys.stderr, "Usage:  "+sys.argv[0]+" [pause|play|stop|next|previous|toggle]"
+	print("Usage:  "+sys.argv[0]+" [pause|play|stop|next|previous|toggle]")
