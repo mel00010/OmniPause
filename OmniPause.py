@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -109,7 +109,7 @@ if not os.path.isdir(directory):
 		os.makedirs(directory+'/paused-players')
 	
 
-if len(sys.argv)-1 is 1:
+if len(sys.argv)-1 == 1:
 	getPlayerList()
 	if sys.argv[1] == 'pause':
 		pause()
@@ -124,6 +124,6 @@ if len(sys.argv)-1 is 1:
 	elif sys.argv[1] == 'toggle':
 		toggle()
 	else:
-		print >> sys.stderr, "Error:  Valid commands to "+sys.argv[0]+"are: pause, play, stop, next, previous, or toggle"
+		print("Error:  Valid commands to "+sys.argv[0]+"are: pause, play, stop, next, previous, or toggle")
 else:
-	print >> sys.stderr, "Usage:  "+sys.argv[0]+" [pause|play|stop|next|previous|toggle]"
+	print("Usage:  "+sys.argv[0]+" [pause|play|stop|next|previous|toggle]")
